@@ -10,9 +10,14 @@ yarn install
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for ssr production
 ```
-yarn build
+yarn build:mac
+```
+
+### Start node service
+```
+yarn start
 ```
 
 ### Lints and fixes files
