@@ -1,8 +1,21 @@
 import Vue from 'vue'
-import App from './App.vue'
+import VueCompositionAPI from '@vue/composition-api'
 
+import App from './App.vue'
+// import createStore from './store'
+import createRouter from './router'
+
+Vue.use(VueCompositionAPI)
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+export default function createApp () {
+
+  // const store = createStore()
+  const router = createRouter()
+  const app = new Vue({
+    // store,
+    router,
+    render: h => h(App),
+  })
+  return {app, router}
+}
