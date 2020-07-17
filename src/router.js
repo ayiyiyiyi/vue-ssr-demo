@@ -8,7 +8,7 @@ export default function createRouter () {
     mode: 'history', // SSR vue-router 一定要是 History 模式,
     routes: [
       {
-        path: '/',
+        path: '/home/:id',
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ './pages/Home.vue')
       },

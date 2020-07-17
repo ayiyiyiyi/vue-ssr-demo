@@ -38,7 +38,6 @@ const requestHandler = async (ctx) => {
         title: "ssr test",
         url: ctx.url
     };
-    console.log('url:', ctx.url)
     if (ctx.url.includes('.')) {
         return await send(ctx, ctx.url, {root: pathResolve('./dist')})
     }

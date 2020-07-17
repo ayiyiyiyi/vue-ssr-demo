@@ -9,9 +9,13 @@
 import { ref, computed, onMounted } from '@vue/composition-api'
 
 export default {
+  props: {
+    msg: String,
+  },
   setup(props) {
     console.log(props.msg)
     const {count, double, increment} = countFn()
+
     return {
       count,
       double,
