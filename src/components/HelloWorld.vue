@@ -12,8 +12,7 @@ export default {
   props: {
     msg: String,
   },
-  setup(props) {
-    console.log(props.msg)
+  setup() {
     const {count, double, increment} = countFn()
 
     return {

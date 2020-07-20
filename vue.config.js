@@ -9,13 +9,19 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 console.log('process.env.TARGET_NODE: ', process.env.TARGET_NODE)
 console.log('NODE_ENV: ', process.env.NODE_ENV)
+console.log(!isDev && !TARGET_NODE)
 module.exports = {
   publicPath: isDev ? 'http://127.0.0.1:8080' : 'http://127.0.0.1:3001',
+  css: {
+    extract: !isDev && !TARGET_NODE,
+    sourceMap: true,
+  },
   configureWebpack: {
     entry: `./src/entry-${target}.js`,
     target: TARGET_NODE ? 'node' : 'web',
     node: TARGET_NODE ? undefined : false,
     output: {
+      // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
       libraryTarget: TARGET_NODE ? 'commonjs2' : undefined
     },
     // https://webpack.js.org/configuration/externals/#function
@@ -36,14 +42,17 @@ module.exports = {
     // VueSSRClientPlugin 插件在输出目录中生成 `vue-ssr-client-manifest.json`
     plugins: [TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()],
   },
-
   chainWebpack: config => {
     config.module
       .rule('vue')
       .use('vue-loader')
       .loader('vue-loader')
       .tap(options => {
-        return options
+
+        //  Object.assign(options, {
+        //   optimizeSSR: false,
+        //   extractCSS: !TARGET_NODE
+        // });
       })
   }
 }

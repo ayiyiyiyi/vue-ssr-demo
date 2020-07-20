@@ -24,10 +24,10 @@ export default {
     asyncData ({ store, route }) {
       // 触发 action 后，会返回 Promise // 202004020
       console.log('id', route.params.id)
-      return store.dispatch('fetchItem', route.params.id)
+      return store.dispatch('fetchItem', '202004020')
     },
     setup(props, context) {
-      const item = computed(() => context.root.$store.state.items[context.root.$route.params.id])
+      const item = computed(() => context.root.$store.state.items['202004020'])
       console.log('item', item)
       return { item }
     },

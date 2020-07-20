@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{msg}}</h1>
-    <button @click="changeMsg">change</button>
+    <h1>aboutmsg: {{aboutmsg}}</h1>
+    <button @click="changeMsg">change msg</button>
     <h2 class="red">this is prop message: {{propMsg}}</h2>
   </div>
 </template>
@@ -15,29 +15,28 @@ import { ref, onMounted } from '@vue/composition-api'
 
 export default {
   props: {
-    msg: String,
+    message: String,
   },
   setup(props) {
-    console.log(props.msg)
-    const propMsg = props.msg
-    const { msg, changeMsg } = countFn()
+    const propMsg = props.message
+    const { aboutmsg, changeMsg } = countFn()
     return {
-      msg,
+      aboutmsg,
       changeMsg,
       propMsg
     }
   }
 }
 function countFn() {
-   let msg = ref('welcome')
+   let aboutmsg = ref('welcome')
     function changeMsg () {
-      msg.value = 'welcome changed success !'
+      aboutmsg.value = 'welcome changed success !'
     }
     onMounted(()=> {
       console.log('mounted')
     })
     return {
-      msg,
+      aboutmsg,
       changeMsg
     }
 }

@@ -13,6 +13,7 @@ export default context => {
         router.onReady(() => {
             // 返回目标位置或是当前路由匹配的组件数组 (是数组的定义/构造类，不是实例)。通常在服务端渲染的数据预加载时使用。
             const matchedComponents = router.getMatchedComponents()
+            console.log(matchedComponents)
             // 匹配不到的路由，执行 reject 函数，并返回 404
             if (!matchedComponents.length) {
                 return reject(new Error('no components matched'))
