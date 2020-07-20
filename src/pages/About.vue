@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>about page test</h1>
-    <p>y: {{obj.x}}</p>
-    <p>y: {{obj.y}}</p>
+    <p>y: {{x}}</p>
+    <p>y: {{y}}</p>
     <welcome message="Welcome to about page" />
         ------------------------------------
     <div>
@@ -12,7 +12,7 @@
 </template>
 <script>
 import Welcome from './../components/Welcome'
-import { reactive } from '@vue/composition-api'
+import { reactive, toRefs } from '@vue/composition-api'
 
 export default {
     name: 'home',
@@ -21,11 +21,15 @@ export default {
     },
 
     setup() {
-      const obj = reactive({
-        x: 0,
-        y: 'a'
-      })
-      return { obj }
+      const { x, y } = testReactive()
+      return { x, y }
     }
+}
+function testReactive() {
+  const pos = reactive({
+    x: 0,
+    y: 0
+  })
+  return toRefs(pos)
 }
 </script>
