@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:client": "vue-cli-service build",
+    "build:client": "NODE_ENV=production vue-cli-service build",
     "build:server": " NODE_ENV=production vue-cli-service build --mode node",
     "build:mac": "npm run build:server && mv dist/vue-ssr-server-bundle.json bundle && npm run build:client && mv bundle dist/vue-ssr-server-bundle.json",
     "lint": "vue-cli-service lint"

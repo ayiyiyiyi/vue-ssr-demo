@@ -12,9 +12,11 @@ console.log('NODE_ENV: ', process.env.NODE_ENV)
 console.log(!isDev && !TARGET_NODE)
 module.exports = {
   publicPath: isDev ? 'http://127.0.0.1:8080' : 'http://127.0.0.1:3001',
+  // 生产环境是否生成 sourceMap 文件
+  productionSourceMap: isDev,
   css: {
     extract: !isDev && !TARGET_NODE,
-    sourceMap: true,
+    sourceMap: isDev,
   },
   configureWebpack: {
     entry: `./src/entry-${target}.js`,
@@ -47,12 +49,8 @@ module.exports = {
       .rule('vue')
       .use('vue-loader')
       .loader('vue-loader')
-      .tap(options => {
-
-        //  Object.assign(options, {
-        //   optimizeSSR: false,
-        //   extractCSS: !TARGET_NODE
-        // });
-      })
+      .tap(options => Object.assign(options, {
+        optimizeSSR: false
+      }))
   }
 }
